@@ -23,11 +23,9 @@
 - 클래스 간 연관 관계 지원 : 1-1, 1-N, N-1, N-M
 - 상속에 대한 매핑 지원
 
-## Hibernate
 
-- JPA Spec에 대한 구현체
 
-### 주요 개념
+## 주요 개념
 
 **Entity**
 
@@ -52,6 +50,8 @@
 - EntityManager와 달리 여러 스레드가 동시에 접근해도 안전함. 단순히 EntityManager를 생성하는 역할만 하기 때문.
 - 생성에 필요한 자원적 비용이 비교적 큼
   - EntityManagerFactory의 경우 Singleton 인스턴스 형태로 DB 당 하나만 사용하는 것이 좋음.
+
+
 
 ## 실습을 통해 알 수 있는 점
 
