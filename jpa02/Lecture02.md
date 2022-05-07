@@ -10,9 +10,11 @@
 transaction Commit 시 Query가 실행되는 것을 알 수 있다.
 
 - Insert
+
 ![insertexecute](./images/insertexecute.png)
 
 - Update
+
 ![updateexecute](./images/updateexecute.png)
 
 
