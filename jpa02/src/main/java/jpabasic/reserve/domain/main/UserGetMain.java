@@ -5,9 +5,13 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class UserGetMain {
+    private static final Logger log = LoggerFactory.getLogger(UserGetMain.class);
+
     public static void main(String[] args) {
 
         /* DB 연동을 위한 기반 생성 */
@@ -20,30 +24,30 @@ public class UserGetMain {
         EntityTransaction transaction = entityManager.getTransaction();
 
         try {
-            System.out.println("Select 실제 실행 시점은?");
+            log.info("Select 실제 실행 시점은?");
 
             /* 트랜잭션 시작 */
             transaction.begin();
 
             /* DB 객체 Read */
-            System.out.println("EntityManager.find 호출 전");
+            log.info("EntityManager.find 호출 전");
             User user = entityManager.find(User.class, "user@user.com");
-            System.out.println("EntityManager.find 호출 후");
+            log.info("EntityManager.find 호출 후");
 
             if(user == null) {
-                System.out.println("No user");
+                log.info("No user");
             } else {
-                System.out.printf("User exists : email=%s, name=%s, createDate%s\n",
+                log.info("User exists : email={}, name={}, createDate {}",
                         user.getEmail(), user.getName(), user.getCreateDate());
             }
 
             /* 트랜잭션 커밋 */
-            System.out.println("EntityManager.commit 호출 전");
+            log.info("EntityManager.commit 호출 전");
             transaction.commit();
-            System.out.println("EntityManager.commit 호출 후");
+            log.info("EntityManager.commit 호출 후");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Exception {} 발생 : {}", e.getClass().getName(), e.getMessage());
             /* 트랜잭션 롤백 */
             transaction.rollback();
 

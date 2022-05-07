@@ -5,9 +5,13 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabasic.reserve.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class UserGetMain {
+
+    private static final Logger log = LoggerFactory.getLogger(UserGetMain.class);
     public static void main(String[] args) {
 
         /* DB 연동을 위한 기반 생성 */
@@ -26,16 +30,16 @@ public class UserGetMain {
             User user = entityManager.find(User.class, "user@user.com");
 
             if(user == null) {
-                System.out.println("No user");
+                log.info("No user");
             } else {
-                System.out.printf("User exists : email=%s, name=%s, createDate%s\n",
+                log.info("User exists : email={}, name={}, createDate {}",
                         user.getEmail(), user.getName(), user.getCreateDate());
             }
 
             transaction.commit();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Exception {} 발생 : {}", e.getClass().getName(), e.getMessage());
             transaction.rollback();
 
         } finally {

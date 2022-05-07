@@ -5,11 +5,15 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jpabasic.reserve.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /***
  * Update 는 별도 update 메서드 없이 Entity의 값을 변경하는 것 만으로 Update 처리가 된다.
  */
 public class UserUpdateMain {
+
+    private static final Logger log = LoggerFactory.getLogger(UserUpdateMain.class);
     public static void main(String[] args) {
 
         /* DB 연동을 위한 기반 생성 */
@@ -22,7 +26,7 @@ public class UserUpdateMain {
         EntityTransaction transaction = entityManager.getTransaction();
 
         try {
-            System.out.println("Update 실제 실행 시점은?");
+            log.info("Update 실제 실행 시점은?");
 
             transaction.begin();
 
@@ -30,18 +34,18 @@ public class UserUpdateMain {
             User user = entityManager.find(User.class, "user@user.com");
 
             if(user == null) {
-                System.out.println("No user");
+                log.info("No user");
             } else {
                 var newName = "이름" + (System.currentTimeMillis()%100);
-                System.out.println("User.changeName 호출 전");
+                log.info("User.changeName 호출 전");
                 user.changeName(newName);
-                System.out.println("User.changeName 호출 후");
+                log.info("User.changeName 호출 후");
             }
-            System.out.println("EntityManager.commit 호출 전");
+            log.info("EntityManager.commit 호출 전");
             transaction.commit();
-            System.out.println("EntityManager.commit 호출 후");
+            log.info("EntityManager.commit 호출 후");
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Exception {} 발생 : {}", e.getClass().getName(), e.getMessage());
             transaction.rollback();
 
         } finally {

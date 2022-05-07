@@ -5,11 +5,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
 public class UserSaveMain {
 
+
+    private static final Logger log = LoggerFactory.getLogger(UserSaveMain.class);
     public static void main(String[] args) {
 
         /* DB 연동을 위한 기반 생성 */
@@ -23,23 +27,23 @@ public class UserSaveMain {
 
         try {
 
-            System.out.println("Insert 실제 실행 시점은?");
+            log.info("Insert 실제 실행 시점은?");
 
             transaction.begin();
 
             User user = new User("user4@user.com", "user", LocalDateTime.now());
 
             /* DB에 객체 저장 */
-            System.out.println("EntityManager.persist 호출 전");
+            log.info("EntityManager.persist 호출 전");
             entityManager.persist(user);
-            System.out.println("EntityManager.persist 호출 후");
+            log.info("EntityManager.persist 호출 후");
 
-            System.out.println("EntityManager.commit 호출 전");
+            log.info("EntityManager.commit 호출 전");
             transaction.commit();
-            System.out.println("EntityManager.commit 호출 후");
+            log.info("EntityManager.commit 호출 후");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Exception {} 발생 : {}", e.getClass().getName(), e.getMessage());
             transaction.rollback();
 
         } finally {
