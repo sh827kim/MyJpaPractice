@@ -1,0 +1,4 @@
+rootProject.name = 'MyJpaPractice'
+include 'jpa01'
+include 'jpa02'
+

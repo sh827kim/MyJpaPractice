@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+allprojects {
+    group 'com.spark'
+    version '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 17
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation('org.hibernate:hibernate-core:6.0.0.Final')
+        implementation('org.hibernate:hibernate-hikaricp:6.0.0.Final')
+        runtimeOnly('mysql:mysql-connector-java:8.0.28')
+        implementation('ch.qos.logback:logback-classic:1.2.11')
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    }
+    test {
+        useJUnitPlatform()
+    }
+}
