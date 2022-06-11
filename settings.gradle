@@ -2,4 +2,7 @@ rootProject.name = 'MyJpaPractice'
 include 'jpa01'
 include 'jpa02'
 include 'jpa03'
+include 'jpa04'
+include 'jpa05'
+include 'jpa06'
 
