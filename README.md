@@ -8,4 +8,8 @@
 4. jpa04 - 엔티티 & 테이블 매핑 설정
 5. jpa05 - 엔티티 식별자 생성 방식
 6. jpa06 - @Embeddable
-7. jpa07 - 
+7. jpa07 - @Embeddable - 다른 테이블과의 매핑
+8. jpa08 - Collections - Set 매핑
+9. jpa09 - Collections - List 매핑
+10. jpa10 - Collections - Map 매핑
+11. 

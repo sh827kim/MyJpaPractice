@@ -5,4 +5,8 @@ include 'jpa03'
 include 'jpa04'
 include 'jpa05'
 include 'jpa06'
+include 'jpa07'
+include 'jpa08'
+include 'jpa09'
+include 'jpa10'
 
